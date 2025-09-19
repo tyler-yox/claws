@@ -1,0 +1,34 @@
+board_manager:
+  additional_urls:
+  - https://espressif.github.io/arduino-esp32/package_esp32_dev_index.json
+build_cache:
+  compilations_before_purge: 10
+  ttl: 720h0m0s
+daemon:
+  port: "50051"
+directories:
+  builtin:
+    # libraries: C:\Users\tyler\AppData\Local\Arduino15\libraries
+    libraries: C:\Users\tyler\.arduinoIDE\Arduino\libraries
+  #data: c:\Users\tyler\AppData\Local\Arduino15
+  data: c:\Users\tyler\.arduinoIDE\Arduino
+  # downloads: C:\Users\tyler\AppData\Local\Arduino15\staging
+  downloads: C:\Users\tyler\.arduinoIDE\Arduino\staging
+  # user: c:\Users\tyler\Documents\Arduino
+  user: c:\Users\tyler\.arduinoIDE\Arduino\user
+library:
+  enable_unsafe_install: false
+locale: en
+logging:
+  file: ""
+  format: text
+  level: info
+metrics:
+  addr: :9090
+  enabled: true
+output:
+  no_color: false
+sketch:
+  always_export_binaries: false
+updater:
+  enable_notification: true
