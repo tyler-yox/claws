@@ -375,7 +375,7 @@ void setup() {
 
   //http client set up
   http_client_cfg = {
-        .host = "192.168.1.75",
+        .host = "192.168.1.127",
         .port = 5000,
         .path = "/data",
         .method = HTTP_METHOD_POST,
