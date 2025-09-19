@@ -11,8 +11,8 @@ Arduino/libraries
 Arduino/packages
 Arduino/staging
 Arduino/tmp
-Arduino/libray_index.json
-Arduino/libray_index.json.sig
+Arduino/library_index.json
+Arduino/library_index.json.sig
 Arduino/package_esp32_dev_index.json
 Arduino/package_index.json
 Arduino/package_index.json.sig
