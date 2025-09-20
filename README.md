@@ -6,3 +6,7 @@ In Arduino IDE Boards Manager, install esp32 by Espressif Systems. Select xiao_e
 
 Includes:
   - cJSON https://github.com/DaveGamble/cJSON
+
+## Develop
+### Windows 
+Clone and copy the repo to the C:/Users/user/.arduinoIDE folder, overwriting arduino-cli.yaml. The libraries and compilers will be downloaded by the Arduino IDE. Edit the paths in arduino-cli.yaml as needed for your user.
