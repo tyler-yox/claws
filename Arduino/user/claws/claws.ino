@@ -149,54 +149,6 @@ static void wifi_event_handler(void *event_handler_arg, esp_event_base_t event_b
   }
 }
 
-//MQTT_EVENT_ANY
-// static void mqtt_event_handler(void *handler_args, esp_event_base_t base, int32_t event_id, void *event_data)
-// {
-//     ESP_LOGD(TAG, "Event dispatched from event loop base=%s, event_id=%" PRIi32, base, event_id);
-//     esp_mqtt_event_handle_t event = (esp_mqtt_event_handle_t) event_data;
-//     switch ((esp_mqtt_event_id_t)event_id) {
-//     case MQTT_EVENT_BEFORE_CONNECT:
-//         //ESP_LOGI(TAG, "MQTT_EVENT_BEFORE_CONNECT");
-//         break;   
-//     case MQTT_EVENT_CONNECTED:
-//         //ESP_LOGI(TAG, "MQTT_EVENT_CONNECTED");
-//         break;
-//     case MQTT_EVENT_DISCONNECTED:
-//         ESP_LOGI(TAG, "MQTT_EVENT_DISCONNECTED");
-//         break;
-//     case MQTT_EVENT_SUBSCRIBED:
-//         ESP_LOGI(TAG, "MQTT_EVENT_SUBSCRIBED, msg_id=%d", event->msg_id);
-//         break;
-//     case MQTT_EVENT_UNSUBSCRIBED:
-//         ESP_LOGI(TAG, "MQTT_EVENT_UNSUBSCRIBED, msg_id=%d", event->msg_id);
-//         break;
-//     case MQTT_EVENT_PUBLISHED:
-//         ESP_LOGI(TAG, "MQTT_EVENT_PUBLISHED, msg_id=%d", event->msg_id);
-//         break;
-//     case MQTT_EVENT_DATA:
-//         ESP_LOGI(TAG, "MQTT_EVENT_DATA");
-//         printf("TOPIC=%.*s\r\n", event->topic_len, event->topic);
-//         printf("DATA=%.*s\r\n", event->data_len, event->data);
-//         break;
-//     case MQTT_EVENT_ERROR:
-//         ESP_LOGI(TAG, "MQTT_EVENT_ERROR");
-//         if (event->error_handle->error_type == MQTT_ERROR_TYPE_TCP_TRANSPORT) {
-//             ESP_LOGI(TAG, "Last error code reported from esp-tls: 0x%x", event->error_handle->esp_tls_last_esp_err);
-//             ESP_LOGI(TAG, "Last tls stack error number: 0x%x", event->error_handle->esp_tls_stack_err);
-//             ESP_LOGI(TAG, "Last captured errno : %d (%s)",  event->error_handle->esp_transport_sock_errno,
-//                      strerror(event->error_handle->esp_transport_sock_errno));
-//         } else if (event->error_handle->error_type == MQTT_ERROR_TYPE_CONNECTION_REFUSED) {
-//             ESP_LOGI(TAG, "Connection refused error: 0x%x", event->error_handle->connect_return_code);
-//         } else {
-//             ESP_LOGW(TAG, "Unknown error type: 0x%x", event->error_handle->error_type);
-//         }
-//         break;
-//     default:
-//         ESP_LOGI(TAG, "Other event id:%d", event->event_id);
-//         break;
-//     }
-// }
-
 esp_err_t _http_event_handler(esp_http_client_event_t *evt) {
     static char *output_buffer;  // Buffer to store response of http request from event handler
     static int output_len;       // Stores number of bytes read
@@ -375,16 +327,6 @@ void setup() {
   esp_sntp_setservername(1, "1.de.pool.ntp.org");
   esp_sntp_setservername(2, "2.de.pool.ntp.org");
   esp_sntp_init();
-
-  //mqtt set up
-  /*
-  mqtt_client_cfg.broker.address.hostname = "192.168.1.75";
-  mqtt_client_cfg.broker.address.port = 1883;
-  mqtt_client_cfg.broker.address.transport = MQTT_TRANSPORT_OVER_TCP;
-  mqtt_client = esp_mqtt_client_init(&mqtt_client_cfg);
-  esp_mqtt_client_register_event(mqtt_client, MQTT_EVENT_ANY, mqtt_event_handler, NULL);
-  esp_mqtt_client_start(mqtt_client);
-  */
 
   //http client set up
   http_client_cfg = {
