@@ -30,10 +30,13 @@
 #include "mqtt_client.h"
 #include "esp_heap_caps.h"
 #include <string>
+#include "esp_http_server.h"
+
 
 #define LEN_MAC_ADDR 20
 #define DEFAULT_SSID "kiwifi :3"
 #define DEFAULT_PWD "mangotango"
+#define API_HOST "192.168.1.96"
 
 #if CONFIG_WIFI_ALL_CHANNEL_SCAN
 #define DEFAULT_SCAN_METHOD WIFI_ALL_CHANNEL_SCAN
@@ -114,6 +117,8 @@ static TickType_t xDelay;
 
 static char * message;
 static char local_response_buffer[2049] ;
+static char ip_addr[50];
+int count = 10;
 
 //WIFI_EVENT //IP_EVENT
 static void wifi_event_handler(void *event_handler_arg, esp_event_base_t event_base, int32_t event_id, void *event_data) {
@@ -126,6 +131,7 @@ static void wifi_event_handler(void *event_handler_arg, esp_event_base_t event_b
     ESP_LOGI(TAG, "IP_EVENT_STA_GOT_IP");
     got_ip_event = (ip_event_got_ip_t*) event_data;
     ESP_LOGI(TAG, "got ip: " IPSTR, IP2STR(&got_ip_event->ip_info.ip));
+    sprintf(ip_addr, "{\"ip\": \"%d.%d.%d.%d\"}", IP2STR(&got_ip_event->ip_info.ip));
     retry_num = 0;
     xEventGroupSetBits(s_wifi_event_group, WIFI_CONNECTED_BIT);
   }
@@ -285,6 +291,13 @@ static void cb_on_ping_end(esp_ping_handle_t hdl, void *args) {
     xEventGroupSetBits(ping_event_group, PING_END_BIT);
 }
 
+//data uri handler
+esp_err_t my_uri_handler(httpd_req_t *req)
+{
+    count = 0;
+    return ESP_OK;
+}
+
 void setup() {
   Serial.begin(9600);
   esp_log_level_set(TAG, ESP_LOG_VERBOSE);
@@ -375,13 +388,35 @@ void setup() {
 
   //http client set up
   http_client_cfg = {
-        .host = "192.168.1.127",
+        .host = API_HOST,
         .port = 5000,
         .path = "/data",
         .method = HTTP_METHOD_POST,
         .event_handler = _http_event_handler,
         .user_data = local_response_buffer,
   };
+
+  esp_http_client_config_t http_register_cfg = {
+        .host = API_HOST,
+        .port = 5000,
+        .path = "/register",
+        .method = HTTP_METHOD_POST,
+        .event_handler = _http_event_handler,
+        .user_data = local_response_buffer,
+  };
+  ESP_LOGD(TAG, "Registering device IP to API server: %s", ip_addr);
+  //register device ip - one-time
+  esp_http_client_handle_t http_client = esp_http_client_init(&http_register_cfg);
+  esp_http_client_set_header(http_client, "Content-Type", "application/json");
+  esp_http_client_set_post_field(http_client, ip_addr, strlen(ip_addr));
+  esp_err_t err = esp_http_client_perform(http_client);
+  if (err == ESP_OK) {
+      ESP_LOGI(TAG, "HTTP POST Status = %d, content_length = %"PRId64, esp_http_client_get_status_code(http_client), esp_http_client_get_content_length(http_client));
+  } else {
+      ESP_LOGE(TAG, "HTTP POST request failed: %s", esp_err_to_name(err));
+  }
+  esp_http_client_cleanup(http_client);
+  ESP_LOGD(TAG, "Device Registered");
 
   esp_ping_callbacks_t cbs = {
       .cb_args = NULL,
@@ -392,6 +427,21 @@ void setup() {
   ESP_ERROR_CHECK(esp_ping_new_session(&ping_config, &cbs, &ping));
   
   message = NULL; //initialize data structure for output
+
+  //http server set up
+  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
+  httpd_handle_t server = NULL;
+  if (httpd_start(&server, &config) == ESP_OK) {
+    // Register URI handlers
+    httpd_uri_t uri_get = {
+        .uri       = "/start",
+        .method    = HTTP_GET,
+        .handler   = my_uri_handler,
+        .user_ctx  = NULL
+    };    
+    httpd_register_uri_handler(server, &uri_get);
+  }
+
 }
 
 void loop() {
@@ -409,19 +459,19 @@ void loop() {
   }
   
   //upload data
-  if (message != NULL) {
+  if (message != NULL && count < 10) {
     esp_http_client_handle_t http_client = esp_http_client_init(&http_client_cfg);
     esp_http_client_set_header(http_client, "Content-Type", "application/json");
     esp_http_client_set_post_field(http_client, message, strlen(message));
     esp_err_t err = esp_http_client_perform(http_client);
     if (err == ESP_OK) {
         ESP_LOGI(TAG, "HTTP POST Status = %d, content_length = %"PRId64, esp_http_client_get_status_code(http_client), esp_http_client_get_content_length(http_client));
+        count += 1;
     } else {
         ESP_LOGE(TAG, "HTTP POST request failed: %s", esp_err_to_name(err));
     }
     esp_http_client_cleanup(http_client);
   }
-  
   // cleanup data structure memory
   // printf("%d\n", heap_caps_get_free_size(MALLOC_CAP_8BIT)); //debug metric for free heap memory
   free(message);
