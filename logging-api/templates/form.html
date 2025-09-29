@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Entry Form</title>
+</head>
+<body>
+    <h2 id="header">Data Entry</h2>
+
+    <div id="form">
+        <label for="room">Room:</label><br>
+        <input type="text" id="room" name="room"><br><br>
+        <label for="x">X, Y:</label><br>
+        <input type="text" id="x" name="x"><br><br>
+        <input type="text" id="y" name="y"><br><br>
+        <button type="submit" onclick="waitCountdown()">Submit</button>
+        <p id="error" style="color:red"></p>
+    </div>
+
+    <script>
+        let timeoutId = null;
+        const delay = ms => new Promise(res => {
+            timeoutId = setTimeout(res, ms)
+        });
+        const waitCountdown = async () => {
+            document.getElementById("error").innerHTML = "";
+            if (document.getElementById("x").value.trim() === "" || document.getElementById("y").value.trim() === "" || document.getElementById("room").value.trim() === "") {
+                document.getElementById("error").innerHTML = "Error: ";
+                if (document.getElementById("room").value.trim() === "") {
+                    document.getElementById("error").innerHTML += "Room is invalid ";
+                }
+                if (document.getElementById("x").value.trim() === "") {
+                    document.getElementById("error").innerHTML += "X is invalid ";
+                }
+                if (document.getElementById("y").value.trim() === "") {
+                    document.getElementById("error").innerHTML += "Y is invalid ";
+                }
+            } else {
+                fetch("/start", {method: "POST", headers: {'Content-Type': 'application/json'},
+                 body: JSON.stringify({
+                     room: document.getElementById("room").value,
+                     x: document.getElementById("x").value,
+                     y: document.getElementById("y").value
+                 })})
+                    .then(response => response.json())
+                    .then(data => {
+                        console.log('Data received:', data);
+                        if (Object.keys(data).includes("error")) {
+                            clearTimeout(timeoutId);
+                            document.getElementById("header").innerHTML = "Data Entry";
+                            document.getElementById("x").value = "";
+                            document.getElementById("y").value = ""
+                            document.getElementById("error").innerHTML = "Error: " + data.error;
+                            document.getElementById("form").style.display = "block";
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Fetch error:', error);
+                    });
+                document.getElementById("header").innerHTML = "Waiting for data point collection";
+                document.getElementById("form").style.display = "none";
+                await delay(15000);
+                document.getElementById("header").innerHTML = "Data Entry";
+                document.getElementById("form").style.display = "block";
+                document.getElementById("x").value = "";
+                document.getElementById("y").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
