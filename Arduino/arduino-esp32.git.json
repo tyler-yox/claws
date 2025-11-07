@@ -1,0 +1,582 @@
+
+
+
+
+
+
+<!DOCTYPE html>
+<html class="gl-system ui-neutral with-top-bar with-header  jh-page-wrapper jh-saas-page-wrapper has-global-footer" lang="zh-CN">
+<head prefix="og: http://ogp.me/ns#">
+<meta charset="utf-8">
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1" name="viewport">
+<title>esp-mirror / espressif / arduino-esp32 · 极狐GitLab</title>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+window.gon={};gon.api_version="v4";gon.default_avatar_url="https://jihulab.com/assets/no_avatar-849f9c04a3a0d0cea2424ae97b27447dc64a7dbfae83c036c45b403392f0e8ba.png";gon.max_file_size=100;gon.asset_host=null;gon.webpack_public_path="/assets/webpack/";gon.relative_url_root="";gon.user_color_mode="gl-system";gon.user_color_scheme="white";gon.markdown_surround_selection=null;gon.markdown_automatic_lists=null;gon.markdown_maintain_indentation=null;gon.math_rendering_limits_enabled=true;gon.allow_immediate_namespaces_deletion=true;gon.recaptcha_api_server_url="https://www.recaptcha.net/recaptcha/api.js";gon.recaptcha_sitekey="6Lf2HW0bAAAAANQADLAA7kYYrVPqH0MGO1AxzA_W";gon.gitlab_url="https://jihulab.com";gon.promo_url="https://about.gitlab.cn";gon.forum_url="https://forum.gitlab.cn";gon.docs_url="https://docs.gitlab.cn";gon.revision="d4c251cdb5f";gon.feature_category="groups_and_projects";gon.gitlab_logo="/assets/gitlab_logo-2957169c8ef64c58616a1ac3f4fc626e8a35ce4eb3ed31bb0d873712f2a041a0.png";gon.secure=true;gon.sprite_icons="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg";gon.sprite_file_icons="/assets/file_icons/file_icons-88a95467170997d6a4052c781684c8250847147987090747773c1ee27c513c5f.svg";gon.illustrations_path="/images/illustrations.svg";gon.emoji_sprites_css_path="/assets/emoji_sprites-bd26211944b9d072037ec97cb138f1a52cd03ef185cd38b8d1fcc963245199a1.css";gon.emoji_backend_version=4;gon.gridstack_css_path="/assets/lazy_bundles/gridstack-f42069e5c7b1542688660592b48f2cbd86e26b77030efd195d124dbd8fe64434.css";gon.test_env=false;gon.disable_animations=null;gon.suggested_label_colors={"#cc338b":"Magenta-pink","#dc143c":"Crimson","#c21e56":"Rose red","#cd5b45":"Dark coral","#ed9121":"Carrot orange","#eee600":"Titanium yellow","#009966":"Green-cyan","#8fbc8f":"Dark sea green","#6699cc":"Blue-gray","#e6e6fa":"Lavender","#9400d3":"Dark violet","#330066":"Deep violet","#36454f":"Charcoal grey","#808080":"Gray"};gon.first_day_of_week=0;gon.time_display_relative=true;gon.time_display_format=0;gon.ee=true;gon.jh=true;gon.dot_com=true;gon.uf_error_prefix="UF";gon.pat_prefix="";gon.keyboard_shortcuts_enabled=true;gon.diagramsnet_url="https://embed.diagrams.net";gon.features={"uiForOrganizations":false,"organizationSwitching":false,"findAndReplace":false,"removeMonitorMetrics":true,"workItemViewForIssues":true,"newProjectCreationForm":false,"workItemsClientSideBoards":false,"glqlWorkItems":false,"glqlAggregation":false,"glqlTypescript":false,"whatsNewFeaturedCarousel":true,"paneledView":false,"archiveGroup":false,"accessibleLoadingButton":false,"projectStudioEnabled":false,"advancedContextResolver":true,"vulnerabilityReportTypeScannerFilter":true,"duoUiNext":false,"duoSideRail":false,"inlineBlame":false,"issueEmailParticipants":true,"editBranchRules":true,"pageSpecificStyles":false,"directoryCodeDropdownUpdates":true,"repositoryFileTreeBrowser":false,"workItemsBeta":false,"workItemsAlpha":false,"repositoryLockInformation":false,"useDuoContextExclusion":true,"duoWorkflowInCi":false};gon.roadmap_epics_limit=1000;gon.subscriptions_url="https://customers.jihulab.com/";gon.subscriptions_legacy_sign_in_url="https://customers.jihulab.com/customers/sign_in?legacy=true";gon.billing_accounts_url="https://customers.jihulab.com/billing_accounts";gon.payment_form_url="https://customers.jihulab.com/payment_forms/cc_validation";gon.payment_validation_form_id="payment_method_validation";gon.recaptcha_enabled=true;gon.tencent_captcha_enabled=true;gon.tencent_captcha_replacement_enabled=true;gon.tencent_captcha_app_id="2035980673";gon.geetest_captcha_id=null;gon.geetest_captcha_replacement_enabled=false;gon.real_name_system=true;gon.phone_registration=true;gon.epic_support_milestone_and_iteration=false;gon.customer_support_url="https://support.gitlab.cn";gon.content_validation_enabled=true;gon.disable_download_button=false;gon.jh_custom_labels_enabled=false;gon.jh_custom_labels=null;gon.has_active_license=true;gon.licensed_features={"remoteDevelopment":true};
+//]]>
+</script>
+
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+const root = document.documentElement;
+if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  root.classList.add('gl-dark');
+}
+
+window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+  if (e.matches) {
+    root.classList.add('gl-dark');
+  } else {
+    root.classList.remove('gl-dark');
+  }
+});
+
+//]]>
+</script>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+var gl = window.gl || {};
+gl.startup_calls = {"/esp-mirror/espressif/arduino-esp32/-/refs/master/logs_tree/?format=json\u0026offset=0\u0026ref_type=HEADS":{},"/esp-mirror/espressif/arduino-esp32/-/blob/master/README.md?format=json\u0026viewer=rich":{}};
+gl.startup_graphql_calls = [{"query":"query pathLastCommit($projectPath: ID!, $path: String, $ref: String!, $refType: RefType) {\n  project(fullPath: $projectPath) {\n    __typename\n    id\n    repository {\n      __typename\n      lastCommit(path: $path, ref: $ref, refType: $refType) {\n        __typename\n        id\n        sha\n        title\n        titleHtml\n        descriptionHtml\n        message\n        webPath\n        committerName\n        committerEmail\n        committedDate\n        authoredDate\n        authorName\n        authorEmail\n        authorGravatar\n        author {\n          __typename\n          id\n          name\n          avatarUrl\n          webPath\n        }\n        signature {\n          __typename\n          ... on GpgSignature {\n            gpgKeyPrimaryKeyid\n            verificationStatus\n          }\n          ... on X509Signature {\n            verificationStatus\n            x509Certificate {\n              id\n              subject\n              subjectKeyIdentifier\n              x509Issuer {\n                id\n                subject\n                subjectKeyIdentifier\n              }\n            }\n          }\n          ... on SshSignature {\n            verificationStatus\n            keyFingerprintSha256\n          }\n        }\n        pipelines(ref: $ref, first: 1) {\n          __typename\n          edges {\n            __typename\n            node {\n              __typename\n              id\n              detailedStatus {\n                __typename\n                id\n                detailsPath\n                icon\n                text\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}\n","variables":{"projectPath":"esp-mirror/espressif/arduino-esp32","ref":"master","path":""}}];
+
+if (gl.startup_calls && window.fetch) {
+  Object.keys(gl.startup_calls).forEach(apiCall => {
+   gl.startup_calls[apiCall] = {
+      fetchCall: fetch(apiCall, {
+        // Emulate XHR for Rails AJAX request checks
+        headers: {
+          'X-Requested-With': 'XMLHttpRequest'
+        },
+        // fetch won’t send cookies in older browsers, unless you set the credentials init option.
+        // We set to `same-origin` which is default value in modern browsers.
+        // See https://github.com/whatwg/fetch/pull/585 for more information.
+        credentials: 'same-origin'
+      })
+    };
+  });
+}
+if (gl.startup_graphql_calls && window.fetch) {
+  const headers = {"X-CSRF-Token":"AD3-e8-kSv2cqbO8Bj4Q3rp-691I451L7yHzBdyj88N59XckRNinjTJWYFarYUfIfWItcjEumCFTmiYFxInb8w","x-gitlab-feature-category":"groups_and_projects"};
+  const url = `https://jihulab.com/api/graphql`
+
+  const opts = {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...headers,
+    }
+  };
+
+  gl.startup_graphql_calls = gl.startup_graphql_calls.map(call => ({
+    ...call,
+    fetchCall: fetch(url, {
+      ...opts,
+      credentials: 'same-origin',
+      body: JSON.stringify(call)
+    })
+  }))
+}
+
+
+//]]>
+</script>
+
+
+
+<meta content="light dark" name="color-scheme">
+<link rel="stylesheet" href="/assets/application-051fc7428d8980117ccef72d03a844302cb6af0502059a9fe51d8be6562e21fe.css" media="(prefers-color-scheme: light)" />
+<link rel="stylesheet" href="/assets/application_dark-b4461a4cab80cbdb2341b007c23dc66dbdf072e87a00dfeb034e3e2faeaef17c.css" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="/assets/page_bundles/project-84c702fec0d46898f3752e2d11cffd1198f91161651f5a64ba96d3320173c207.css" /><link rel="stylesheet" href="/assets/page_bundles/tree-382ca3a5f91ec42026c001c24da87e8f98151009d645869e13fb8433f976d4e1.css" /><link rel="stylesheet" href="/assets/page_bundles/commit_description-9e7efe20f0cef17d0606edabfad0418e9eb224aaeaa2dae32c817060fa60abcc.css" /><link rel="stylesheet" href="/assets/page_bundles/projects-1e46068245452053a00290f44a0ebda348b43ba90e413a07b9d36767e72b79aa.css" /><link rel="stylesheet" href="/assets/page_bundles/work_items-5c7c2275b6f850c9ee73315a87f1a8a662add1fb89e1e7e20b594746a8e85d83.css" /><link rel="stylesheet" href="/assets/page_bundles/notes_shared-a4dff941637ebef2cf76105ce3c2b1b2cb2c523f2af7710be4e47d6892e03c41.css" />
+<link rel="stylesheet" href="/assets/application_utilities-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" media="(prefers-color-scheme: light)" />
+<link rel="stylesheet" href="/assets/application_utilities_dark-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" media="(prefers-color-scheme: dark)" />
+<link rel="stylesheet" href="/assets/tailwind-80fe4e337a358bfc4d020c4bc89ad597c169dc281683f250a813a518e9f346e7.css" />
+
+
+<link rel="stylesheet" href="/assets/fonts-deb7ad1d55ca77c0172d8538d53442af63604ff490c74acc2859db295c125bdb.css" />
+<link rel="stylesheet" href="/assets/highlight/themes/white-be4fdae1a25a255ed59f155dc9b7449697d7552a98dd3965643301056c8f426a.css" media="(prefers-color-scheme: light)" />
+<link rel="stylesheet" href="/assets/highlight/themes/dark-77ed54f14352adb6ae26be56730f321e0273576f8be6e1f73d1d2ac3ec191a0b.css" media="(prefers-color-scheme: dark)" />
+
+<script src="/assets/webpack/runtime.19db0b56.bundle.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/main.4efdee57.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/tracker.85adcc5f.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/analytics.1f5b93d6.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+window.snowplowOptions = {"namespace":"gl","hostname":"jihulab.com:443","postPath":"/-/collect_events","forceSecureTracker":true,"appId":"gitlab_sm"}
+
+gl = window.gl || {};
+gl.snowplowStandardContext = {"schema":"iglu:com.gitlab/gitlab_standard/jsonschema/1-1-7","data":{"environment":"production","source":"gitlab-rails","correlation_id":"01K9FKBRWVPYT5H66W5B6T4XF7","plan":"team","extra":{},"user_id":null,"global_user_id":null,"user_type":null,"is_gitlab_team_member":null,"namespace_id":107474,"ultimate_parent_namespace_id":107346,"project_id":164050,"feature_enabled_by_namespace_ids":null,"realm":"saas","instance_id":"49899eb8-e6a0-4287-9d33-ccb396ca632e","unique_instance_id":"db2a3b71-9887-5952-87de-51209c6cd4be","host_name":"jihulab.com","instance_version":"18.6.0","context_generated_at":"2025-11-08T00:45:58.738+08:00"}}
+gl.snowplowPseudonymizedPageUrl = "https://jihulab.com/namespace107474/project164050";
+gl.maskedDefaultReferrerUrl = "https://jihulab.com/namespace/project.git";
+gl.ga4MeasurementId = 'G-ENFH3X7M5Y';
+gl.duoEvents = ["ai_question_category","perform_completion_worker","process_gitlab_duo_question","agent_platform_session_created","agent_platform_session_dropped","agent_platform_session_finished","agent_platform_session_started","agent_platform_session_stopped","ai_response_time","ci_repository_xray_artifact_created","cleanup_stuck_agent_platform_session","click_purchase_seats_button_group_duo_pro_home_page","code_suggestion_accepted_in_ide","code_suggestion_rejected_in_ide","code_suggestion_shown_in_ide","code_suggestions_connection_details_rate_limit_exceeded","code_suggestions_direct_access_rate_limit_exceeded","code_suggestions_rate_limit_exceeded","create_ai_catalog_item","create_ai_catalog_item_consumer","create_ai_self_hosted_model","default_answer","delete_ai_catalog_item","delete_ai_catalog_item_consumer","delete_ai_self_hosted_model","detected_high_comment_temperature","detected_repeated_high_comment_temperature","encounter_duo_code_review_error_during_review","error_answer","excluded_files_from_duo_code_review","execute_llm_method","find_no_issues_duo_code_review_after_review","find_nothing_to_review_duo_code_review_on_mr","finish_duo_workflow_execution","forced_high_temperature_commenting","i_quickactions_q","include_repository_xray_data_into_code_generation_prompt","mention_gitlabduo_in_mr_comment","post_comment_duo_code_review_on_diff","process_gitlab_duo_slash_command","react_thumbs_down_on_duo_code_review_comment","react_thumbs_up_on_duo_code_review_comment","request_ask_help","request_duo_chat_response","request_review_duo_code_review_on_mr_by_author","request_review_duo_code_review_on_mr_by_non_author","requested_comment_temperature","retry_duo_workflow_execution","start_duo_workflow_execution","submit_gitlab_duo_question","tokens_per_embedding","tokens_per_user_request_prompt","tokens_per_user_request_response","trigger_ai_catalog_item","troubleshoot_job","update_ai_catalog_item","update_ai_catalog_item_consumer","update_ai_self_hosted_model","update_model_selection_feature","update_self_hosted_ai_feature_to_vendored_model","view_ai_catalog_item","view_ai_catalog_item_index"];
+gl.onlySendDuoEvents = true;
+
+
+//]]>
+</script>
+
+<link rel="preload" href="/assets/application_utilities-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css" as="style" type="text/css" nonce="Jqwv9lyUtbrdgxxgB2eBRA==">
+<link rel="preload" href="/assets/application-051fc7428d8980117ccef72d03a844302cb6af0502059a9fe51d8be6562e21fe.css" as="style" type="text/css" nonce="Jqwv9lyUtbrdgxxgB2eBRA==">
+<link rel="preload" href="/assets/highlight/themes/white-be4fdae1a25a255ed59f155dc9b7449697d7552a98dd3965643301056c8f426a.css" as="style" type="text/css" nonce="Jqwv9lyUtbrdgxxgB2eBRA==">
+
+<script src="/assets/locale/zh_CN/app-e75ea75d013f833a4a4943afc3f6ee4c56962c6ff5b73f7f6c7a1d83dd2a674e.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+
+
+<script src="/assets/webpack/commons-pages.groups.settings.work_items.show-super_sidebar.8e0dbbc1.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.search.show-super_sidebar.166efb85.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/super_sidebar.a7185c3c.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.commit.rapid_diffs-pages.projects.compare.rapid_diff-3c6e86fc.59564783.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/3808d5a6.6aad2eb0.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/e124287b.cf00b9c7.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.edit-pages.projects.blob.new-pages.projects.blob.show-pages.projects.get-487ddc08.534e1ece.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.snippets.show-pages.projects.tre-c684fcf6.6be52e3c.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/35610df2.9d43ac93.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.commits.show-pages.projects.show-pages.projects.tree.show.6259ba66.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.groups.show-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.108024ba.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.blob.show-pages.projects.show-pages.projects.tree.show.b67b6660.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/commons-pages.projects.home_panel-pages.projects.show.2e29d061.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+<script src="/assets/webpack/pages.projects.show.38aa85b4.chunk.js" defer="defer" nonce="cHeYgL68KZ9+j8qaDqTuew=="></script>
+
+<meta content="object" property="og:type">
+<meta content="极狐GitLab" property="og:site_name">
+<meta content="esp-mirror / espressif / arduino-esp32 · 极狐GitLab" property="og:title">
+<meta content="JihuLab.com 免费试用 90 天" property="og:description">
+<meta content="https://jihulab.com/assets/twitter_card-67324091d206ba0e63f4810d745f0b886bedcaa9fa620763cfb90bf3fc9c05f2.jpg" property="og:image">
+<meta content="64" property="og:image:width">
+<meta content="64" property="og:image:height">
+<meta content="https://jihulab.com/esp-mirror/espressif/arduino-esp32" property="og:url">
+<meta content="summary" property="twitter:card">
+<meta content="esp-mirror / espressif / arduino-esp32 · 极狐GitLab" property="twitter:title">
+<meta content="JihuLab.com 免费试用 90 天" property="twitter:description">
+<meta content="https://jihulab.com/assets/twitter_card-67324091d206ba0e63f4810d745f0b886bedcaa9fa620763cfb90bf3fc9c05f2.jpg" property="twitter:image">
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="dWpV0DQG4DG8VC0cwR8XJyAa_gXA0PQtDulvTP4A16cMotyPv3oNQRKr_vZsQEAx5wY4qrkd8UeyUrpM5ir_lw" />
+<meta name="csp-nonce" content="cHeYgL68KZ9+j8qaDqTuew==" />
+<meta name="action-cable-url" content="/-/cable" />
+<link href="/-/manifest.json" rel="manifest">
+<link rel="icon" type="image/png" href="/assets/favicon-72a2cad5025aa931d6ea56c3201d1f18e68a8cd39788c7c80d5b2b82aa5143ef.png" id="favicon" data-original-href="/assets/favicon-72a2cad5025aa931d6ea56c3201d1f18e68a8cd39788c7c80d5b2b82aa5143ef.png" />
+<link rel="apple-touch-icon" type="image/x-icon" href="/assets/apple-touch-icon-b049d4bc0dd9626f31db825d61880737befc7835982586d015bded10b4435460.png" />
+<link href="/search/opensearch.xml" rel="search" title="Search GitLab" type="application/opensearchdescription+xml">
+<link rel="alternate" type="application/atom+xml" title="arduino-esp32 activity" href="/esp-mirror/espressif/arduino-esp32.atom" />
+
+
+
+<!-- Tencent RUM -->
+<script src="https://cdn-go.cn/aegis/aegis-sdk/latest/aegis.min.js" type="text/javascript"></script>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+;var aegis = new Aegis({
+    id: 'lYKjL8AgQDn7M6aqwe',
+    reportApiSpeed: true,
+    reportAssetSpeed: true,
+});
+window.addEventListener("unhandledrejection", function(err){
+  if(err.reason && err.reason.name === 'AbortError') {
+    err.preventDefault();
+  }
+});
+
+
+//]]>
+</script><!-- End Tencent Code -->
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==" src="https://static.sensorsdata.cn/sdk/1.26.2/sensorsdata.min.js"></script>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+function initSensorsData() {
+  var isProdEnv = window.location.host === 'jihulab.com';
+  var sensors = window['sensorsDataAnalytic201505'];
+  var productionSensorsParam = isProdEnv ? '&project=production' : '';
+  sensors.use('PageLeave');
+  sensors.use('PageLoad');
+  sensors.init({
+    server_url: `https://jihuxinxi.datasink.sensorsdata.cn/sa?token=f72fe9657b021a44${productionSensorsParam}`,
+    heatmap: {
+      clickmap: 'default',
+      scroll_notice_map: 'default',
+      collect_tags: {
+        div: {
+          max_level: 3
+        }
+      },
+      get_vtrack_config: true
+    },
+    use_client_time: true,
+    send_type: 'beacon',
+    show_log: !isProdEnv
+  });
+
+  var siteUrl = new URL(location.href);
+
+  sensors.registerPage({
+    lead_source: 'SaaS',
+    platform_type: window.location.host,
+    channel: siteUrl.searchParams.get('channel') || '',
+    utm_keyword: siteUrl.searchParams.get('utm_keyword') || '',
+    utm_source: siteUrl.searchParams.get('utm_source') || '',
+    utm_medium: siteUrl.searchParams.get('utm_medium') || '',
+    utm_term: siteUrl.searchParams.get('utm_term') || '',
+    utm_content: siteUrl.searchParams.get('utm_content') || '',
+    utm_campaign: siteUrl.searchParams.get('utm_campaign') || '',
+  });
+
+  sensors.quick('autoTrack');
+}
+document.addEventListener('DOMContentLoaded', initSensorsData);
+document.addEventListener('turbolinks:load', initSensorsData);
+
+//]]>
+</script>
+
+<meta content="JihuLab.com 免费试用 90 天" name="description">
+<meta content="#ececef" name="theme-color">
+</head>
+
+<body class="tab-width-8 gl-browser-generic gl-platform-other body-fixed-scrollbar" data-group="espressif" data-group-full-path="esp-mirror/espressif" data-namespace-id="107474" data-page="projects:show" data-page-type-id="arduino-esp32" data-project="arduino-esp32" data-project-full-path="esp-mirror/espressif/arduino-esp32" data-project-id="164050" data-project-studio-available="false" data-project-studio-enabled="false">
+<div id="js-tooltips-container"></div>
+
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+gl = window.gl || {};
+gl.client = {"isGeneric":true,"isOther":true};
+
+
+//]]>
+</script>
+
+
+<header class="header-logged-out" data-testid="navbar">
+<a class="gl-sr-only gl-accessibility" href="#content-body">Skip to content</a>
+<div class="container-fluid">
+<nav aria-label="浏览 GitLab" class="header-logged-out-nav gl-flex gl-gap-3 gl-justify-between">
+<div class="gl-flex gl-items-center gl-gap-1">
+<span class="gl-sr-only">GitLab</span>
+<a title="主页" id="logo" class="header-logged-out-logo has-tooltip" aria-label="主页" data-track-label="main_navigation" data-track-action="click_gitlab_logo_link" data-track-property="navigation_top" href="/"><svg class="tanuki-logo" width="58" height="24" viewBox="0 0 58 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path
+    d="M52.3911 22.196V16.4006H53.4155V18.5682H53.4579C53.5108 18.4626 53.5853 18.3503 53.6815 18.2315C53.7777 18.1108 53.9079 18.0079 54.072 17.923C54.2361 17.8363 54.4455 17.7929 54.7002 17.7929C55.036 17.7929 55.3388 17.8787 55.6086 18.0504C55.8802 18.2202 56.0953 18.472 56.2537 18.8059C56.4141 19.138 56.4943 19.5454 56.4943 20.0284C56.4943 20.5057 56.416 20.9113 56.2594 21.2452C56.1028 21.5791 55.8896 21.8338 55.6199 22.0092C55.3501 22.1847 55.0445 22.2724 54.703 22.2724C54.454 22.2724 54.2474 22.2309 54.0833 22.1479C53.9192 22.0649 53.7871 21.9649 53.6871 21.8479C53.589 21.7291 53.5126 21.6168 53.4579 21.5112H53.3985V22.196H52.3911ZM53.3957 20.0227C53.3957 20.3038 53.4353 20.55 53.5145 20.7613C53.5956 20.9726 53.7117 21.1377 53.8626 21.2565C54.0154 21.3735 54.2003 21.432 54.4172 21.432C54.6436 21.432 54.8332 21.3716 54.986 21.2508C55.1388 21.1282 55.2539 20.9613 55.3312 20.75C55.4105 20.5368 55.4501 20.2944 55.4501 20.0227C55.4501 19.753 55.4114 19.5134 55.3341 19.304C55.2567 19.0946 55.1416 18.9304 54.9888 18.8116C54.836 18.6927 54.6455 18.6333 54.4172 18.6333C54.1984 18.6333 54.0126 18.6909 53.8598 18.8059C53.707 18.921 53.5909 19.0823 53.5117 19.2898C53.4344 19.4973 53.3957 19.7416 53.3957 20.0227Z"
+    fill="currentColor" />
+  <path
+    d="M49.1459 22.2838C48.8705 22.2838 48.6224 22.2348 48.4017 22.1367C48.1828 22.0367 48.0093 21.8895 47.881 21.6952C47.7546 21.5009 47.6914 21.2613 47.6914 20.9765C47.6914 20.7312 47.7367 20.5284 47.8272 20.3681C47.9178 20.2077 48.0414 20.0794 48.1979 19.9832C48.3545 19.887 48.5309 19.8144 48.7271 19.7653C48.9252 19.7144 49.1299 19.6776 49.3412 19.655C49.5958 19.6285 49.8024 19.605 49.9609 19.5842C50.1193 19.5616 50.2344 19.5276 50.3061 19.4823C50.3797 19.4352 50.4165 19.3625 50.4165 19.2644V19.2475C50.4165 19.0343 50.3533 18.8692 50.2269 18.7523C50.1005 18.6353 49.9184 18.5768 49.6807 18.5768C49.4298 18.5768 49.2308 18.6315 49.0836 18.7409C48.9384 18.8504 48.8403 18.9796 48.7894 19.1286L47.8329 18.9928C47.9084 18.7287 48.0329 18.508 48.2064 18.3306C48.38 18.1514 48.5922 18.0175 48.8431 17.9288C49.094 17.8382 49.3713 17.793 49.6751 17.793C49.8845 17.793 50.0929 17.8175 50.3004 17.8665C50.508 17.9156 50.6976 17.9967 50.8692 18.1099C51.0409 18.2212 51.1786 18.3731 51.2824 18.5655C51.388 18.7579 51.4408 18.9984 51.4408 19.2871V22.1961H50.4561V21.599H50.4221C50.3599 21.7197 50.2722 21.8329 50.159 21.9386C50.0477 22.0423 49.9071 22.1263 49.7373 22.1904C49.5694 22.2527 49.3723 22.2838 49.1459 22.2838ZM49.4119 21.5311C49.6175 21.5311 49.7958 21.4905 49.9467 21.4094C50.0976 21.3264 50.2137 21.217 50.2948 21.0812C50.3778 20.9453 50.4193 20.7972 50.4193 20.6369V20.1247C50.3872 20.1511 50.3325 20.1756 50.2552 20.1983C50.1797 20.2209 50.0948 20.2407 50.0005 20.2577C49.9062 20.2747 49.8128 20.2898 49.7203 20.303C49.6279 20.3162 49.5477 20.3275 49.4798 20.3369C49.327 20.3577 49.1902 20.3916 49.0695 20.4388C48.9488 20.486 48.8535 20.552 48.7837 20.6369C48.7139 20.7199 48.679 20.8274 48.679 20.9595C48.679 21.1481 48.7479 21.2906 48.8856 21.3868C49.0233 21.483 49.1987 21.5311 49.4119 21.5311Z"
+    fill="currentColor" />
+  <path d="M43.5522 22.196V16.4006H44.6021V21.3159H47.1545V22.196H43.5522Z" fill="currentColor" />
+  <path
+    d="M42.6369 17.8495V18.6418H40.1382V17.8495H42.6369ZM40.7551 16.8081H41.7794V20.8886C41.7794 21.0263 41.8002 21.132 41.8417 21.2056C41.8851 21.2772 41.9417 21.3263 42.0115 21.3527C42.0813 21.3791 42.1586 21.3923 42.2435 21.3923C42.3077 21.3923 42.3661 21.3876 42.419 21.3782C42.4737 21.3687 42.5152 21.3602 42.5435 21.3527L42.7161 22.1535C42.6614 22.1724 42.5831 22.1931 42.4812 22.2158C42.3812 22.2384 42.2586 22.2516 42.1134 22.2554C41.8568 22.2629 41.6257 22.2243 41.4201 22.1394C41.2144 22.0526 41.0513 21.9187 40.9305 21.7376C40.8117 21.5564 40.7532 21.3301 40.7551 21.0584V16.8081Z"
+    fill="currentColor" />
+  <path
+    d="M38.4225 22.1959V17.8493H39.4469V22.1959H38.4225ZM38.9375 17.2325C38.7753 17.2325 38.6357 17.1787 38.5187 17.0712C38.4017 16.9617 38.3433 16.8306 38.3433 16.6778C38.3433 16.5231 38.4017 16.392 38.5187 16.2845C38.6357 16.1751 38.7753 16.1204 38.9375 16.1204C39.1016 16.1204 39.2412 16.1751 39.3563 16.2845C39.4733 16.392 39.5318 16.5231 39.5318 16.6778C39.5318 16.8306 39.4733 16.9617 39.3563 17.0712C39.2412 17.1787 39.1016 17.2325 38.9375 17.2325Z"
+    fill="currentColor" />
+  <path
+    d="M36.4163 18.2512C36.3691 18.0984 36.3041 17.9616 36.221 17.8409C36.1399 17.7182 36.0418 17.6135 35.9268 17.5268C35.8136 17.44 35.6834 17.3749 35.5362 17.3315C35.3891 17.2862 35.2287 17.2636 35.0552 17.2636C34.7439 17.2636 34.4666 17.3419 34.2232 17.4985C33.9799 17.6551 33.7884 17.8852 33.6488 18.1889C33.5111 18.4908 33.4422 18.8586 33.4422 19.2925C33.4422 19.7302 33.5111 20.1009 33.6488 20.4046C33.7865 20.7084 33.978 20.9395 34.2232 21.0979C34.4685 21.2545 34.7533 21.3328 35.0778 21.3328C35.3721 21.3328 35.6268 21.2762 35.8419 21.163C36.0588 21.0498 36.2258 20.8895 36.3427 20.682C36.4597 20.4725 36.5182 20.2273 36.5182 19.9462L36.7559 19.983H35.1825V19.1624H37.5341V19.8585C37.5341 20.3546 37.4284 20.7838 37.2171 21.146C37.0058 21.5082 36.7153 21.7874 36.3456 21.9836C35.9758 22.178 35.5513 22.2751 35.0722 22.2751C34.5383 22.2751 34.0695 22.1553 33.6658 21.9157C33.2639 21.6743 32.9498 21.3319 32.7235 20.8885C32.499 20.4433 32.3867 19.9151 32.3867 19.3039C32.3867 18.836 32.4527 18.4181 32.5848 18.0503C32.7187 17.6824 32.9055 17.3702 33.1451 17.1136C33.3847 16.8552 33.6658 16.659 33.9884 16.525C34.311 16.3892 34.6618 16.3213 35.041 16.3213C35.3617 16.3213 35.6608 16.3685 35.9381 16.4628C36.2154 16.5552 36.4616 16.6873 36.6766 16.8589C36.8936 17.0306 37.0719 17.2344 37.2115 17.4702C37.3511 17.706 37.4426 17.9663 37.4859 18.2512H36.4163Z"
+    fill="currentColor" />
+  <path
+    d="M32.7517 14.9401V9.50532C32.621 9.7134 32.4161 10.0522 32.2283 10.223C31.8885 10.5321 31.4427 10.8023 30.9224 10.8023V9.58274C31.0118 9.58274 31.1758 9.53173 31.4077 9.32083C31.6319 9.11687 31.8618 8.81421 32.0707 8.45109C32.4986 7.70731 32.7517 6.86691 32.7517 6.40319H31.445V5.18363H32.7517V3.00586H33.9712V5.18363H35.2779V6.40319H33.9712C33.9712 7.16356 34.289 7.80605 34.7052 8.26289C35.1464 8.74731 35.605 8.92941 35.8006 8.92941V10.149C35.1902 10.149 34.5102 9.78209 33.9712 9.25747V14.9401H32.7517Z"
+    fill="currentColor" />
+  <path fill-rule="evenodd" clip-rule="evenodd"
+    d="M35.2779 4.74808H36.4975V7.01296C36.4975 8.18932 36.3224 9.96161 35.913 11.4217C35.7074 12.1552 35.4544 12.7663 35.1649 13.1808C34.8737 13.5977 34.6182 13.7205 34.4068 13.7205V14.9401C35.1863 14.9401 35.7638 14.4531 36.1647 13.8791C36.5673 13.3027 36.8656 12.5419 37.0873 11.7509C37.2686 11.1043 37.4066 10.4084 37.5066 9.72533C37.7758 10.3232 38.0897 10.9126 38.4367 11.4644C38.6174 11.7518 38.8091 12.0323 39.0108 12.3014C38.6665 12.6467 38.317 12.9432 37.9827 13.1756C37.4246 13.5638 36.985 13.7205 36.7152 13.7205V14.9401C37.3602 14.9401 38.053 14.6122 38.679 14.1769C39.0539 13.9162 39.433 13.5972 39.8004 13.236C40.022 13.4668 40.2521 13.6809 40.4895 13.8739C41.2613 14.5011 42.1557 14.9401 43.1179 14.9401V13.7205C42.5339 13.7205 41.9038 13.4517 41.2587 12.9274C41.0429 12.7521 40.8304 12.552 40.6231 12.3314C41.7627 10.934 42.7259 9.08603 42.7259 7.36141V7.18719C42.7259 6.94664 42.5309 6.75163 42.2903 6.75163H40.6166L41.7806 4.14147C41.9091 3.85339 41.6982 3.52853 41.3828 3.52853H35.2779V4.74808ZM39.8354 11.3629C40.6572 10.3041 41.2801 9.0812 41.4561 7.97118H39.4086C39.0931 7.97118 38.8823 7.64632 39.0108 7.35824L40.1748 4.74808H37.717V5.79341C37.717 7.07666 38.3892 9.09795 39.4691 10.8152C39.5875 11.0035 39.7098 11.1865 39.8354 11.3629Z"
+    fill="currentColor" />
+  <path
+    d="M45.8533 6.8729C45.9538 7.28569 46.0375 7.74586 46.1016 8.26088C46.0916 8.32733 46.0485 8.46177 45.9206 8.66107C45.7805 8.87938 45.5758 9.11766 45.3362 9.33981C45.097 9.56159 44.8394 9.75208 44.6036 9.88347C44.3531 10.0231 44.1881 10.0619 44.1182 10.0619V11.2815C44.4947 11.2815 44.8774 11.127 45.1972 10.9488C45.5318 10.7624 45.8673 10.5105 46.1654 10.2341C46.1919 10.2096 46.2182 10.1847 46.2443 10.1595C46.2701 10.7346 46.2802 11.2301 46.2621 11.6586C46.2371 12.2506 46.1596 12.6609 46.0307 12.9486C45.9127 13.2122 45.7473 13.3843 45.4871 13.5049C45.2029 13.6367 44.7747 13.7206 44.1182 13.7206V14.9401C44.8554 14.9401 45.4861 14.8497 46.0002 14.6113C46.5383 14.3618 46.9106 13.9676 47.1437 13.4472C47.366 12.9509 47.4532 12.3594 47.4806 11.7101C47.5082 11.0561 47.4764 10.2885 47.4274 9.41788C47.3487 8.01832 47.1547 6.88332 46.8619 5.94914C47.4718 5.29088 48.0205 4.4994 48.3042 3.74269L47.1623 3.31448C47.0014 3.74351 46.7079 4.22367 46.3453 4.68019C45.9865 3.98944 45.5505 3.44263 45.0502 2.9895L44.2315 3.89344C44.6913 4.30985 45.1106 4.85057 45.4463 5.63008C45.1977 5.84933 44.9529 6.03167 44.7288 6.16551C44.4208 6.34938 44.2156 6.40324 44.1182 6.40324V7.6228C44.5434 7.6228 44.9779 7.43711 45.3539 7.21265C45.5196 7.11371 45.687 6.99932 45.8533 6.8729Z"
+    fill="currentColor" />
+  <path
+    d="M51.8792 3.48709C53.3411 3.34909 54.9005 3.19997 55.3274 3.15219L55.463 4.36418C55.2626 4.38661 54.8275 4.42999 54.2756 4.48354C54.3074 5.37362 54.4294 7.50334 54.7506 9.53459C54.9401 10.7323 55.1929 11.8561 55.5202 12.6654C55.6847 13.0721 55.8526 13.36 56.0111 13.5364C56.1647 13.7074 56.2655 13.721 56.3137 13.7206V14.9401C55.8011 14.9446 55.4018 14.6831 55.1039 14.3514C54.8107 14.0251 54.5788 13.5905 54.3896 13.1226C54.0096 12.1829 53.7397 10.9497 53.546 9.72511C53.2246 7.69293 53.0969 5.57541 53.0596 4.60024C52.7561 4.62913 52.4444 4.65868 52.1361 4.6878C52.1628 8.53714 52.0857 10.484 51.3649 13.0351L52.3966 12.6865C52.1898 12.1662 51.9856 11.6386 51.8356 11.2207L52.9835 10.8088C53.2054 11.4274 53.5574 12.3122 53.857 13.0494C54.0062 13.4165 54.1413 13.7444 54.2391 13.9805C54.2879 14.0985 54.3275 14.1936 54.3548 14.259C54.3684 14.2917 54.379 14.3171 54.3862 14.3342L54.3969 14.3599L54.397 14.36C54.397 14.36 54.397 14.36 53.8346 14.5958C53.2723 14.8315 53.2723 14.8315 53.2723 14.8315L53.261 14.8047C53.2537 14.7872 53.243 14.7615 53.2292 14.7284C53.2016 14.6622 53.1616 14.5662 53.1123 14.4472C53.0424 14.2783 52.9534 14.0627 52.8539 13.8193L50.2964 14.6833C49.9561 14.7983 49.6307 14.4751 49.7434 14.134L49.8529 13.8026C50.8316 10.8406 50.9448 9.09416 50.9173 4.80255C50.5941 4.83288 50.2964 4.86075 50.0422 4.8845C49.9337 4.89465 49.8331 4.90405 49.7418 4.91257C49.7532 7.23891 49.7036 9.53686 49.4631 11.3048C49.3341 12.2537 49.144 13.101 48.8509 13.728C48.5662 14.3368 48.0853 14.9291 47.3044 14.9359L47.2938 13.7164C47.3513 13.7159 47.5237 13.6872 47.7461 13.2115C47.96 12.7539 48.1306 12.0532 48.2547 11.1405C48.5013 9.32729 48.5404 6.87861 48.5185 4.36267L48.5171 4.2025C48.5151 3.97612 48.6869 3.78598 48.9123 3.765C49.9013 3.67292 50.8903 3.58043 51.8792 3.48709Z"
+    fill="currentColor" />
+  <path
+    d="M25.5361 9.55084L25.5026 9.46406L22.1804 0.797729C22.114 0.627146 21.9944 0.482477 21.8394 0.38512C21.6845 0.286025 21.5022 0.238583 21.3186 0.249613C21.135 0.258528 20.9589 0.325559 20.8157 0.441039C20.6726 0.55652 20.5699 0.714478 20.5224 0.892127L18.2842 7.75119H9.20985L6.96257 0.892127C6.91454 0.715544 6.81164 0.558791 6.66872 0.444499C6.52486 0.330526 6.34915 0.264039 6.16587 0.25422C5.98259 0.244402 5.80079 0.291737 5.64557 0.389687C5.49097 0.487532 5.37152 0.632044 5.30452 0.802298L1.98385 9.46406L1.95035 9.55084C1.47224 10.8002 1.41329 12.1712 1.78239 13.457C2.1515 14.7429 2.92865 15.8738 3.99666 16.6794L4.00731 16.687L4.03776 16.7098L9.09718 20.4979L11.6002 22.392L13.1228 23.543C13.3013 23.6785 13.5192 23.7518 13.7432 23.7518C13.9673 23.7518 14.1852 23.6785 14.3637 23.543L15.8862 22.392L18.3893 20.4979L23.4776 16.6916L23.4913 16.6824C24.5595 15.8763 25.3366 14.7447 25.7055 13.4583C26.0743 12.1719 26.0149 10.8005 25.5361 9.55084V9.55084Z"
+    fill="#E24329" />
+  <path
+    d="M25.5358 9.55114L25.5023 9.46436C23.884 9.79659 22.3591 10.4824 21.0367 11.4726L13.7422 16.9873L18.389 20.4982L23.4773 16.6919L23.491 16.6827C24.5592 15.8766 25.3364 14.745 25.7052 13.4586C26.074 12.1722 26.0146 10.8008 25.5358 9.55114V9.55114Z"
+    fill="#FC6D26" />
+  <path
+    d="M9.09619 20.498L11.5993 22.3921L13.1218 23.5431C13.3003 23.6786 13.5182 23.7519 13.7422 23.7519C13.9663 23.7519 14.1842 23.6786 14.3627 23.5431L15.8852 22.3921L18.3883 20.498L13.7415 16.9871L9.09619 20.498Z"
+    fill="#FCA326" />
+  <path
+    d="M6.44746 11.4726C5.12576 10.4821 3.6013 9.79632 1.98336 9.46436L1.94987 9.55114C1.47175 10.8005 1.4128 12.1715 1.7819 13.4573C2.15101 14.7432 2.92816 15.8741 3.99617 16.6797L4.00682 16.6873L4.03727 16.7101L9.09669 20.4982L13.742 16.9873L6.44746 11.4726Z"
+    fill="#FC6D26" />
+</svg>
+
+</a></div>
+<ul class="gl-list-none gl-p-0 gl-m-0 gl-flex gl-gap-3 gl-items-center gl-grow">
+<li class="header-logged-out-nav-item header-logged-out-dropdown @md/panel:gl-hidden">
+<button class="header-logged-out-toggle" data-toggle="dropdown" type="button">
+<span class="gl-sr-only">
+菜单
+</span>
+<svg class="s16" data-testid="hamburger-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#hamburger"></use></svg>
+</button>
+<div class="dropdown-menu">
+<ul>
+<li>
+<a href="https://about.gitlab.cn/why-gitlab">为什么选择 GitLab
+</a></li>
+<li>
+<a href="https://about.gitlab.cn/pricing">定价
+</a></li>
+<li>
+<a href="https://about.gitlab.cn/sales">联系销售
+</a></li>
+<li>
+<a href="/explore">探索</a>
+</li>
+</ul>
+</div>
+</li>
+<li class="header-logged-out-nav-item gl-hidden @md/panel:gl-inline-block">
+<a href="https://about.gitlab.cn/why-gitlab">为什么选择 GitLab
+</a></li>
+<li class="header-logged-out-nav-item gl-hidden @md/panel:gl-inline-block">
+<a href="https://about.gitlab.cn/pricing">定价
+</a></li>
+<li class="header-logged-out-nav-item gl-hidden gl-inline-block">
+<a href="https://about.gitlab.cn/sales">联系销售
+</a></li>
+<li class="header-logged-out-nav-item gl-hidden @md/panel:gl-inline-block">
+<a class="" href="/explore">探索</a>
+</li>
+</ul>
+<ul class="gl-list-none gl-p-0 gl-m-0 gl-flex gl-gap-3 gl-items-center gl-justify-end">
+<li class="header-logged-out-nav-item">
+<a href="/users/sign_in?redirect_to_referer=yes">登录</a>
+</li>
+<li class="header-logged-out-nav-item">
+<a class="gl-button btn btn-md btn-confirm !gl-inline-flex" href="/users/sign_up"><span class="gl-button-text">
+获取免费试用
+
+</span>
+
+</a></li>
+</ul>
+</nav>
+</div>
+</header>
+
+<div class="layout-page page-with-super-sidebar">
+<aside class="js-super-sidebar super-sidebar super-sidebar-loading" data-command-palette="{&quot;project_files_url&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/files/master?format=json&quot;,&quot;project_blob_url&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/blob/master&quot;}" data-force-desktop-expanded-sidebar="" data-is-saas="true" data-root-path="/" data-sidebar="{&quot;whats_new_most_recent_release_items_count&quot;:4,&quot;whats_new_version_digest&quot;:&quot;3cf20e77ac28338f2ca7083d2a5b7759347c5dbfe0c5bae7c69e6610c1bacc41&quot;,&quot;whats_new_read_articles&quot;:[],&quot;whats_new_mark_as_read_path&quot;:&quot;/-/whats_new/mark_as_read&quot;,&quot;is_logged_in&quot;:false,&quot;compare_plans_url&quot;:&quot;https://about.gitlab.cn/pricing&quot;,&quot;context_switcher_links&quot;:[{&quot;title&quot;:&quot;探索&quot;,&quot;link&quot;:&quot;/explore&quot;,&quot;icon&quot;:&quot;compass&quot;}],&quot;current_menu_items&quot;:[{&quot;id&quot;:&quot;project_overview&quot;,&quot;title&quot;:&quot;arduino-esp32&quot;,&quot;entity_id&quot;:164050,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32&quot;,&quot;link_classes&quot;:&quot;shortcuts-project&quot;,&quot;is_active&quot;:true},{&quot;id&quot;:&quot;manage_menu&quot;,&quot;title&quot;:&quot;管理&quot;,&quot;icon&quot;:&quot;users&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/activity&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;activity&quot;,&quot;title&quot;:&quot;动态&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/activity&quot;,&quot;link_classes&quot;:&quot;shortcuts-project-activity&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;members&quot;,&quot;title&quot;:&quot;成员&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/project_members&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;labels&quot;,&quot;title&quot;:&quot;标记&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/labels&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;plan_menu&quot;,&quot;title&quot;:&quot;计划&quot;,&quot;icon&quot;:&quot;planning&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/issues&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;project_issue_list&quot;,&quot;title&quot;:&quot;议题&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/issues&quot;,&quot;link_classes&quot;:&quot;shortcuts-issues has-sub-items&quot;,&quot;pill_count_field&quot;:&quot;openIssuesCount&quot;,&quot;pill_count_dynamic&quot;:false,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;boards&quot;,&quot;title&quot;:&quot;议题看板&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/boards&quot;,&quot;link_classes&quot;:&quot;shortcuts-issue-boards&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;milestones&quot;,&quot;title&quot;:&quot;里程碑&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/milestones&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;project_wiki&quot;,&quot;title&quot;:&quot;Wiki&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/wikis/home&quot;,&quot;link_classes&quot;:&quot;shortcuts-wiki&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;code_menu&quot;,&quot;title&quot;:&quot;代码&quot;,&quot;icon&quot;:&quot;code&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/merge_requests&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;project_merge_request_list&quot;,&quot;title&quot;:&quot;合并请求&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/merge_requests&quot;,&quot;link_classes&quot;:&quot;shortcuts-merge_requests&quot;,&quot;pill_count_field&quot;:&quot;openMergeRequestsCount&quot;,&quot;pill_count_dynamic&quot;:false,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;files&quot;,&quot;title&quot;:&quot;仓库&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/tree/master&quot;,&quot;link_classes&quot;:&quot;shortcuts-tree&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;branches&quot;,&quot;title&quot;:&quot;分支&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/branches&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;commits&quot;,&quot;title&quot;:&quot;提交&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/commits/master?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-commits&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;tags&quot;,&quot;title&quot;:&quot;标签&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/tags&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;graphs&quot;,&quot;title&quot;:&quot;仓库图&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/network/master?ref_type=heads&quot;,&quot;link_classes&quot;:&quot;shortcuts-network&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;compare&quot;,&quot;title&quot;:&quot;比较修订版本&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/compare?from=master\u0026to=master&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;project_snippets&quot;,&quot;title&quot;:&quot;代码片段&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/snippets&quot;,&quot;link_classes&quot;:&quot;shortcuts-snippets&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;build_menu&quot;,&quot;title&quot;:&quot;构建&quot;,&quot;icon&quot;:&quot;rocket&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/pipelines&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;pipelines&quot;,&quot;title&quot;:&quot;流水线&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/pipelines&quot;,&quot;link_classes&quot;:&quot;shortcuts-pipelines&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;jobs&quot;,&quot;title&quot;:&quot;作业&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/jobs&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;pipeline_schedules&quot;,&quot;title&quot;:&quot;流水线计划&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/pipeline_schedules&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;artifacts&quot;,&quot;title&quot;:&quot;产物&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/artifacts&quot;,&quot;link_classes&quot;:&quot;shortcuts-builds&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;deploy_menu&quot;,&quot;title&quot;:&quot;部署&quot;,&quot;icon&quot;:&quot;deployments&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/releases&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;releases&quot;,&quot;title&quot;:&quot;发布&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/releases&quot;,&quot;link_classes&quot;:&quot;shortcuts-deployments-releases&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;packages_registry&quot;,&quot;title&quot;:&quot;软件包仓库&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/packages&quot;,&quot;link_classes&quot;:&quot;shortcuts-container-registry&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;container_registry&quot;,&quot;title&quot;:&quot;容器镜像仓库&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/container_registry&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_registry&quot;,&quot;title&quot;:&quot;模型注册表&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/ml/models&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;operations_menu&quot;,&quot;title&quot;:&quot;运维&quot;,&quot;icon&quot;:&quot;cloud-pod&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/environments&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;environments&quot;,&quot;title&quot;:&quot;环境&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/environments&quot;,&quot;link_classes&quot;:&quot;shortcuts-environments&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;infrastructure_registry&quot;,&quot;title&quot;:&quot;Terraform 模块&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/terraform_module_registry&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;monitor_menu&quot;,&quot;title&quot;:&quot;监控&quot;,&quot;icon&quot;:&quot;monitor&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/incidents&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;incidents&quot;,&quot;title&quot;:&quot;事件&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/incidents&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;service_desk&quot;,&quot;title&quot;:&quot;服务台&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/issues/service_desk&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false},{&quot;id&quot;:&quot;analyze_menu&quot;,&quot;title&quot;:&quot;分析&quot;,&quot;icon&quot;:&quot;chart&quot;,&quot;avatar_shape&quot;:&quot;rect&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/value_stream_analytics&quot;,&quot;is_active&quot;:false,&quot;items&quot;:[{&quot;id&quot;:&quot;cycle_analytics&quot;,&quot;title&quot;:&quot;价值流分析&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/value_stream_analytics&quot;,&quot;link_classes&quot;:&quot;shortcuts-project-cycle-analytics&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;contributors&quot;,&quot;title&quot;:&quot;贡献者分析&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/graphs/master?ref_type=heads&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;ci_cd_analytics&quot;,&quot;title&quot;:&quot;CI/CD 分析&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/pipelines/charts&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;repository_analytics&quot;,&quot;title&quot;:&quot;仓库分析&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/graphs/master/charts&quot;,&quot;link_classes&quot;:&quot;shortcuts-repository-charts&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;model_experiments&quot;,&quot;title&quot;:&quot;模型实验&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/ml/experiments&quot;,&quot;is_active&quot;:false},{&quot;id&quot;:&quot;performance_analytics&quot;,&quot;title&quot;:&quot;效能分析&quot;,&quot;link&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/analytics/performance_analytics&quot;,&quot;is_active&quot;:false}],&quot;separated&quot;:false}],&quot;current_context_header&quot;:&quot;项目&quot;,&quot;support_path&quot;:&quot;https://about.gitlab.cn/support/&quot;,&quot;docs_path&quot;:&quot;/help/docs&quot;,&quot;display_whats_new&quot;:true,&quot;show_version_check&quot;:null,&quot;search&quot;:{&quot;search_path&quot;:&quot;/search&quot;,&quot;issues_path&quot;:&quot;/dashboard/issues&quot;,&quot;mr_path&quot;:&quot;/dashboard/merge_requests&quot;,&quot;autocomplete_path&quot;:&quot;/search/autocomplete&quot;,&quot;settings_path&quot;:&quot;/search/settings&quot;,&quot;search_context&quot;:{&quot;group&quot;:{&quot;id&quot;:107474,&quot;name&quot;:&quot;espressif&quot;,&quot;full_name&quot;:&quot;esp-mirror / espressif&quot;},&quot;group_metadata&quot;:{&quot;issues_path&quot;:&quot;/groups/esp-mirror/espressif/-/issues&quot;,&quot;mr_path&quot;:&quot;/groups/esp-mirror/espressif/-/merge_requests&quot;},&quot;project&quot;:{&quot;id&quot;:164050,&quot;name&quot;:&quot;arduino-esp32&quot;},&quot;project_metadata&quot;:{&quot;mr_path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/merge_requests&quot;,&quot;issues_path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/issues&quot;},&quot;code_search&quot;:true,&quot;ref&quot;:&quot;master&quot;,&quot;scope&quot;:null,&quot;for_snippets&quot;:null}},&quot;panel_type&quot;:&quot;project&quot;,&quot;shortcut_links&quot;:[{&quot;title&quot;:&quot;代码片段&quot;,&quot;href&quot;:&quot;/explore/snippets&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-snippets&quot;},{&quot;title&quot;:&quot;群组&quot;,&quot;href&quot;:&quot;/explore/groups&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-groups&quot;},{&quot;title&quot;:&quot;项目&quot;,&quot;href&quot;:&quot;/explore/projects/starred&quot;,&quot;css_class&quot;:&quot;dashboard-shortcuts-projects&quot;}],&quot;terms&quot;:&quot;/-/users/terms&quot;}"></aside>
+
+
+<div class="content-wrapper">
+<div class="broadcast-wrapper">
+
+
+
+</div>
+<div class="alert-wrapper alert-wrapper-top-space gl-flex gl-flex-col gl-gap-3 container-fluid container-limited">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="top-bar-fixed container-fluid" data-testid="top-bar">
+<div class="top-bar-container gl-flex gl-items-center gl-gap-2">
+<div class="gl-grow gl-basis-0 gl-flex gl-items-center gl-justify-start gl-gap-3">
+<button class="gl-button btn btn-icon btn-md btn-default btn-default-tertiary js-super-sidebar-toggle-expand super-sidebar-toggle -gl-ml-3" aria-controls="super-sidebar" aria-expanded="false" aria-label="主导航侧边栏" type="button"><svg class="s16 gl-icon gl-button-icon " data-testid="sidebar-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#sidebar"></use></svg>
+
+</button>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"esp-mirror","item":"https://jihulab.com/esp-mirror"},{"@type":"ListItem","position":2,"name":"espressif","item":"https://jihulab.com/esp-mirror/espressif"},{"@type":"ListItem","position":3,"name":"arduino-esp32","item":"https://jihulab.com/esp-mirror/espressif/arduino-esp32"}]}
+
+
+</script>
+<div data-testid="breadcrumb-links" id="js-vue-page-breadcrumbs-wrapper">
+<div data-breadcrumbs-json="[{&quot;text&quot;:&quot;esp-mirror&quot;,&quot;href&quot;:&quot;/esp-mirror&quot;,&quot;avatarPath&quot;:&quot;/uploads/-/system/group/avatar/107346/9460735.png&quot;},{&quot;text&quot;:&quot;espressif&quot;,&quot;href&quot;:&quot;/esp-mirror/espressif&quot;,&quot;avatarPath&quot;:null},{&quot;text&quot;:&quot;arduino-esp32&quot;,&quot;href&quot;:&quot;/esp-mirror/espressif/arduino-esp32&quot;,&quot;avatarPath&quot;:null}]" id="js-vue-page-breadcrumbs"></div>
+<div id="js-injected-page-breadcrumbs"></div>
+<div id="js-page-breadcrumbs-extra"></div>
+</div>
+
+
+</div>
+
+</div>
+</div>
+
+<div class="container-fluid container-limited project-highlight-puc">
+<main class="content" id="content-body" itemscope itemtype="http://schema.org/SoftwareSourceCode">
+<div id="js-drawer-container"></div>
+<div class="flash-container flash-container-page sticky" data-testid="flash-container">
+<div id="js-global-alerts"></div>
+</div>
+
+
+
+
+
+
+
+
+
+
+<header class="project-home-panel js-show-on-project-root gl-mt-5">
+<div class="gl-flex gl-justify-between gl-flex-wrap gl-flex-col gl-gap-5 gl-pl-4 @sm/panel:gl-flex-row">
+<div class="home-panel-title-row gl-flex gl-items-center">
+<div aria-hidden="true" class="gl-avatar gl-avatar-s48 gl-self-start gl-shrink-0 gl-mr-4 !gl-rounded-base gl-avatar-identicon gl-avatar-identicon-bg6" itemprop="image">
+A
+</div>
+
+<h1 class="home-panel-title gl-heading-1 gl-flex gl-items-center gl-flex-wrap gl-gap-3 gl-break-anywhere gl-mb-0" data-testid="project-name-content" itemprop="name">
+arduino-esp32
+<button class="has-tooltip gl-border-0 gl-bg-transparent gl-p-0 gl-leading-0 gl-text-inherit visibility-icon gl-inline-flex" data-container="body" data-placement="top" title="公开 - 无需任何身份验证即可访问该项目。" type="button" aria-label="公开 - 无需任何身份验证即可访问该项目。"><svg class="s16 gl-fill-icon-subtle" data-testid="earth-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#earth"></use></svg></button>
+
+
+</h1>
+</div>
+<div data-can-read-project="true" data-id="164050" data-is-group="false" data-is-project-archived="false" data-is-project-empty="false" data-is-project-marked-for-deletion="false" data-project-id="164050" data-project-name="arduino-esp32" data-project-visibility-level="public" data-sign-in-path="/users/sign_in?redirect_to_referer=yes" data-star-count="0" data-starred="false" data-starrers-path="/esp-mirror/espressif/arduino-esp32/-/starrers" id="js-home-panel"></div>
+</div>
+
+</header>
+
+<div class="project-page-indicator js-show-on-project-root"></div>
+<div class="project-page-layout">
+<div class="project-page-layout-sidebar js-show-on-project-root gl-mt-5 @max-lg/panel:gl-pl-4">
+<aside class="project-page-sidebar" data-testid="project-page-sidebar">
+<div class="project-page-sidebar-block home-panel-home-desc gl-py-4 gl-border-b gl-border-b-subtle !gl-pt-2">
+<h2 class="gl-text-base gl-font-bold gl-leading-reset gl-text-heading gl-m-0 gl-mb-1">项目信息</h2>
+<div class="gl-mb-2 gl-mt-3">
+<div class="progress repository-languages-bar js-show-on-project-root"><div class="progress-bar has-tooltip" style="width: 72.64%; background-color:#f34b7d" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;C++&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;72.6%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 24.0%; background-color:#555555" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;C&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;24.0%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 2.29%; background-color:#3572A5" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;Python&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;2.3%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 0.56%; background-color:#e34c26" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;HTML&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;0.6%&lt;/span&gt;"></div><div class="progress-bar has-tooltip" style="width: 0.3%; background-color:#e7efda" data-html="true" title="&lt;span class=&quot;repository-language-bar-tooltip-language&quot;&gt;CMake&lt;/span&gt;&amp;nbsp;&lt;span class=&quot;repository-language-bar-tooltip-share&quot;&gt;0.3%&lt;/span&gt;"></div></div>
+</div>
+</div>
+<div class="project-page-sidebar-block gl-py-4 gl-border-b gl-border-b-subtle">
+<nav class="project-stats">
+<ul class="nav gl-gap-y-2 gl-gap-x-5">
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/esp-mirror/espressif/arduino-esp32/-/commits/master"><svg class="s16 gl-fill-icon-subtle gl-mr-3" data-testid="commit-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#commit"></use></svg><strong class="project-stat-value">3,925</strong> 次提交</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/esp-mirror/espressif/arduino-esp32/-/branches"><svg class="s16 gl-fill-icon-subtle gl-mr-3" data-testid="branch-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#branch"></use></svg><strong class="project-stat-value">51</strong> 个分支</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2" href="/esp-mirror/espressif/arduino-esp32/-/tags"><svg class="s16 gl-fill-icon-subtle gl-mr-3" data-testid="label-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#label"></use></svg><strong class="project-stat-value">83</strong> 个标签</a>
+</li>
+</ul>
+
+</nav>
+</div>
+<div class="project-page-sidebar-block gl-py-4 gl-border-b gl-border-b-subtle">
+<div class="project-buttons gl-mb-2 js-show-on-project-root" data-testid="project-buttons">
+<ul class="nav gl-gap-y-2 gl-gap-x-5">
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2 btn-default" href="/esp-mirror/espressif/arduino-esp32/-/blob/master/README.md"><svg class="s16 gl-fill-icon-subtle gl-mr-3" data-testid="doc-text-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#doc-text"></use></svg>自述文件</a>
+</li>
+<li class="nav-item">
+<a class="nav-link stat-link !gl-px-0 !gl-pb-2 btn-default" itemprop="license" href="/esp-mirror/espressif/arduino-esp32/-/blob/master/LICENSE.md"><svg class="s16 gl-fill-icon-subtle gl-mr-3" data-testid="scale-icon"><use href="/assets/icons-62cd41f10569bb5050df02409792752f47c042aa91f8d59f11b48b79e724f90d.svg#scale"></use></svg><span class="project-stat-value">GNU LGPLv2.1</span></a>
+</li>
+</ul>
+
+</div>
+</div>
+
+<div class="project-page-sidebar-block gl-py-4">
+<p class="gl-font-bold gl-text-strong gl-m-0 gl-mb-1">创建于</p>
+<span>2023年11月09日</span>
+</div>
+</aside>
+
+</div>
+<div class="project-page-layout-content">
+<div class="project-show-files">
+<div class="tree-holder gl-clearfix js-per-page gl-mt-5" data-blame-per-page="1000" id="tree-holder">
+<div data-breadcrumbs-can-collaborate="false" data-breadcrumbs-can-edit-tree="false" data-breadcrumbs-can-push-code="false" data-breadcrumbs-can-push-to-branch="false" data-breadcrumbs-new-blob-path="/esp-mirror/espressif/arduino-esp32/-/new/master" data-breadcrumbs-new-branch-path="/esp-mirror/espressif/arduino-esp32/-/branches/new" data-breadcrumbs-new-dir-path="/esp-mirror/espressif/arduino-esp32/-/create_dir/master" data-breadcrumbs-new-tag-path="/esp-mirror/espressif/arduino-esp32/-/tags/new" data-breadcrumbs-upload-path="/esp-mirror/espressif/arduino-esp32/-/create/master" data-download-links="[{&quot;text&quot;:&quot;zip&quot;,&quot;path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/archive/master/arduino-esp32-master.zip?ref_type=heads&quot;},{&quot;text&quot;:&quot;tar.gz&quot;,&quot;path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/archive/master/arduino-esp32-master.tar.gz?ref_type=heads&quot;},{&quot;text&quot;:&quot;tar.bz2&quot;,&quot;path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/archive/master/arduino-esp32-master.tar.bz2?ref_type=heads&quot;},{&quot;text&quot;:&quot;tar&quot;,&quot;path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/archive/master/arduino-esp32-master.tar?ref_type=heads&quot;}]" data-escaped-ref="master" data-http-url="https://jihulab.com/esp-mirror/espressif/arduino-esp32.git" data-kerberos-url="" data-new-workspace-path="/-/remote_development/workspaces/new" data-organization-id="1" data-project-id="164050" data-project-path="esp-mirror/espressif/arduino-esp32" data-project-root-path="/esp-mirror/espressif/arduino-esp32" data-ref="master" data-ref-type="heads" data-root-ref="master" data-ssh-url="git@jihulab.com:esp-mirror/espressif/arduino-esp32.git" data-web-ide-button-default-branch="master" data-web-ide-button-options="{&quot;project_path&quot;:&quot;esp-mirror/espressif/arduino-esp32&quot;,&quot;ref&quot;:&quot;master&quot;,&quot;is_fork&quot;:false,&quot;needs_to_fork&quot;:true,&quot;gitpod_enabled&quot;:false,&quot;is_blob&quot;:false,&quot;show_edit_button&quot;:false,&quot;show_web_ide_button&quot;:false,&quot;show_gitpod_button&quot;:false,&quot;show_pipeline_editor_button&quot;:false,&quot;web_ide_url&quot;:&quot;/-/ide/project/esp-mirror/espressif/arduino-esp32/edit/master&quot;,&quot;edit_url&quot;:&quot;&quot;,&quot;pipeline_editor_url&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/ci/editor?branch_name=master&quot;,&quot;gitpod_url&quot;:&quot;https://gitpod.io/#https://jihulab.com/esp-mirror/espressif/arduino-esp32/-/tree/master/&quot;,&quot;user_preferences_gitpod_path&quot;:&quot;/-/profile/preferences#user_gitpod_enabled&quot;,&quot;user_profile_enable_gitpod_path&quot;:&quot;/-/user_settings/profile?user%5Bgitpod_enabled%5D=true&quot;,&quot;project_id&quot;:164050,&quot;new_workspace_path&quot;:&quot;/-/remote_development/workspaces/new&quot;,&quot;organization_id&quot;:1,&quot;fork_path&quot;:&quot;/esp-mirror/espressif/arduino-esp32/-/forks/new&quot;,&quot;fork_modal_id&quot;:null}" data-xcode-url="" id="js-repository-blob-header-app"></div>
+<div class="info-well project-last-commit gl-mt-5">
+<div class="gl-flex gl-items-center gl-justify-center gl-m-auto gl-min-h-9 @lg/panel:gl-min-h-[4.5rem]" data-history-link="/esp-mirror/espressif/arduino-esp32/-/commits/master" data-ref-type="heads" id="js-last-commit">
+<div class="gl-spinner-container" role="status"><span aria-hidden class="gl-spinner gl-spinner-md gl-spinner-dark !gl-align-text-bottom"></span><span class="gl-sr-only !gl-absolute">加载中</span>
+</div>
+</div>
+</div>
+<div data-escaped-ref="master" data-explain-code-available="false" data-full-name="esp-mirror / espressif / arduino-esp32" data-has-revs-file="false" data-path-locks-available="false" data-path-locks-toggle="/esp-mirror/espressif/arduino-esp32/path_locks/toggle" data-project-path="esp-mirror/espressif/arduino-esp32" data-project-short-path="arduino-esp32" data-ref="master" data-ref-type="heads" data-resource-id="gid://gitlab/Project/164050" data-user-id="" id="js-tree-list"></div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+</main>
+</div>
+
+<footer class="jh-records-footer">
+<section class="promotion-links">
+<a class="jh-about-website" href="https://gitlab.cn" target="_blank">关于极狐(GitLab)</a>
+</section>
+<section class="record-links">
+<span class="record-item">
+<img data-src="/assets/footer/anti-law-928014fd1478111affd68504f2450afb07d3eab1b69150f9af9791326a592c77.svg" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+<a href="https://12377.cn/">违法和不良信息举报中心</a>
+</span>
+<span class="divider"></span>
+<span class="record-item">
+<img data-src="/assets/footer/national-emblem-19e6a1836efc865e5a7892e555aeba3f70ad0ede3a39a614e84b0e65ae3e9cc7.svg" class="lazy" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" />
+<a class="jh-records-link" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11010502047940" target="_blank">京公网安备11010502047940号</a>
+</span>
+<span class="divider"></span>
+<span class="record-item">
+<a class="jh-records-link" href="https://beian.miit.gov.cn/#/Integrated/index" target="_blank">京ICP备2021036779号-1</a>
+</span>
+</section>
+</footer>
+
+</div>
+</div>
+
+
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+if ('loading' in HTMLImageElement.prototype) {
+  document.querySelectorAll('img.lazy').forEach(img => {
+    img.loading = 'lazy';
+    let imgUrl = img.dataset.src;
+    // Only adding width + height for avatars for now
+    if (imgUrl.indexOf('/avatar/') > -1 && imgUrl.indexOf('?') === -1) {
+      const targetWidth = img.getAttribute('width') || img.width;
+      imgUrl += `?width=${targetWidth}`;
+    }
+    img.src = imgUrl;
+    img.removeAttribute('data-src');
+    img.classList.remove('lazy');
+    img.classList.add('js-lazy-loaded');
+    img.dataset.testid = 'js-lazy-loaded-content';
+  });
+}
+
+//]]>
+</script>
+<script nonce="cHeYgL68KZ9+j8qaDqTuew==">
+//<![CDATA[
+gl = window.gl || {};
+gl.experiments = {};
+
+
+//]]>
+</script>
+
+</body>
+</html>
+

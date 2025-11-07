@@ -219,9 +219,9 @@ void receive_csi_cb(void *ctx, wifi_csi_info_t *data) {
     cJSON_AddNumberToObject(json, "noiseFloor", received.rx_ctrl.noise_floor);
     cJSON_AddNumberToObject(json, "timestamp", received.rx_ctrl.timestamp);
     cJSON *csiArray = cJSON_CreateArray();
-		int8_t* my_ptr=data->buf;
+		int8_t* dataBuffer=data->buf;
 		for(int i=0;i<data->len;i++){
-      cJSON_AddItemToArray(csiArray, cJSON_CreateNumber(my_ptr[i]));
+      cJSON_AddItemToArray(csiArray, cJSON_CreateNumber(dataBuffer[i]));
 		}
     cJSON_AddItemToObject(json, "csi", csiArray);
     if (message == NULL || strlen(message) < 10) {
@@ -243,11 +243,11 @@ static void cb_on_ping_end(esp_ping_handle_t hdl, void *args) {
     xEventGroupSetBits(ping_event_group, PING_END_BIT);
 }
 
-//data uri handler
-esp_err_t my_uri_handler(httpd_req_t *req)
+esp_err_t reset_uri_handler(httpd_req_t *req)
 {
     count = 0;
-    return ESP_OK;
+    httpd_resp_sendstr(req, "reset ping counter");
+    return ESP_OK; //close connection
 }
 
 void setup() {
@@ -378,7 +378,7 @@ void setup() {
     httpd_uri_t uri_get = {
         .uri       = "/start",
         .method    = HTTP_GET,
-        .handler   = my_uri_handler,
+        .handler   = reset_uri_handler,
         .user_ctx  = NULL
     };    
     httpd_register_uri_handler(server, &uri_get);
@@ -395,7 +395,9 @@ void loop() {
   //wait until pings are completed
   EventBits_t pingBits = xEventGroupWaitBits(ping_event_group, PING_END_BIT, pdFALSE, pdFALSE, xDelay);
   if (pingBits & PING_END_BIT) {
-      ESP_LOGD(TAG, "Completed pings.");
+      if (count < 10) {
+        ESP_LOGD(TAG, "Completed pings.");
+      }
   } else {
       ESP_LOGE(TAG, "UNEXPECTED EVENT");
   }

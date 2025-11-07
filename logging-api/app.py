@@ -8,6 +8,8 @@ app = Flask(__name__)
 device_ip: str = '192.168.1.112'
 current_label = {}
 data_freq = {}
+error = ''
+
 
 @app.route("/data", methods=['POST'])
 def csi_data_callback():
@@ -31,20 +33,35 @@ def register_device_ip():
 def start_counter():
     response = {}
     global current_label
+    global error
     current_label = {'room': request.json['room'], 'x': request.json['x'], 'y': request.json['y']}
-
+    st = threading.Thread(target=start_counter_thread)
+    started = False
+    error = ''
     if data_freq.get(str(current_label), 0) < 10:
         try:
-            threading.Thread(target=start_counter_thread).start()
+            st.start()
+            started = True
         except:
             print('Failed to connect to device.')
     else:
-        response['error'] = "already measured"
-    return response
+        error = 'already measured'
+    if started:
+        st.join()
+    if error:
+        response['error'] = error
+        return response, 400
+    else:
+        return response, 200
 
 
 def start_counter_thread():
-    requests.get('http://' + device_ip + '/start')
+    try:
+        resp = requests.get('http://' + device_ip + '/start', timeout=2)
+        print(resp.text)
+    except Exception:
+        global error
+        error = 'Failed to connect to device.'
 
 
 @app.route('/')
