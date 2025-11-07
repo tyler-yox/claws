@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <title>Data Entry Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto&display=swap">
 </head>
 <body>
-    <h2 id="header">Data Entry</h2>
-
+    <div id="header-box">
+        <h1 id="header">Data Entry</h1>
+    </div>
     <div id="form">
-        <label for="room">Room:</label><br>
-        <input type="text" id="room" name="room"><br><br>
-        <label for="x">X, Y:</label><br>
-        <input type="text" id="x" name="x"><br><br>
-        <input type="text" id="y" name="y"><br><br>
+        <label for="room">Room</label><br>
+        <input type="text" id="room" name="room" placeholder="e.g. bedroom"><br><br>
+        <label for="x">X, Y</label><br>
+        <input type="number" id="x" name="x" value="0"><br><br>
+        <input type="number" id="y" name="y" value="0"><br><br>
         <button type="submit" onclick="waitCountdown()">Submit</button>
-        <p id="error" style="color:red"></p>
+        <p id="error"></p>
     </div>
 
     <script>
@@ -48,10 +52,8 @@
                         if (Object.keys(data).includes("error")) {
                             clearTimeout(timeoutId);
                             document.getElementById("header").innerHTML = "Data Entry";
-                            document.getElementById("x").value = "";
-                            document.getElementById("y").value = ""
                             document.getElementById("error").innerHTML = "Error: " + data.error;
-                            document.getElementById("form").style.display = "block";
+                            document.getElementById("form").style.display = "flex";
                         }
                     })
                     .catch(error => {
@@ -61,9 +63,7 @@
                 document.getElementById("form").style.display = "none";
                 await delay(15000);
                 document.getElementById("header").innerHTML = "Data Entry";
-                document.getElementById("form").style.display = "block";
-                document.getElementById("x").value = "";
-                document.getElementById("y").value = "";
+                document.getElementById("form").style.display = "flex";
             }
         }
     </script>

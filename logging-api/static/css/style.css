@@ -1,0 +1,54 @@
+html {
+    font-size: 16px;
+    font-family: Roboto, sans-serif;
+    filter: invert(1);
+}
+
+body {
+    margin-top: 5%;
+    background-color: white;
+}
+#header-box {
+    margin: auto;
+    min-width: 12rem;
+    max-width: 60%;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 6vw, 5rem);
+}
+
+label {
+    display: inline-block;
+    margin-top: 1.5rem;
+    margin-bottom: 0.25rem;
+    font-size: clamp(1rem, 3vw, 3rem);
+}
+
+input {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-size: clamp(1rem, 4vw, 3rem);
+}
+
+button {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    font-size: clamp(1rem, 3vw, 3rem);
+    margin-top: 2rem;
+    background-color: #ff223f;
+}
+
+#form {
+    display: flex;
+    margin: auto;
+    min-width: 12rem;
+    max-width: 60%;
+    flex-direction: column;
+}
+
+#error {
+    color: #00ddc0;
+    font-size: clamp(1rem, 1vw, 3rem);
+}
